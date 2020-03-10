@@ -1,9 +1,14 @@
 # Project for population dynamics class
+
 ## General infos
 Author: Célestin BIGARRÉ
+
 class : Cellular population dynamics
+
 Degree : M2 Maths in Action
+
 School : Université Claude Bernard Lyon 1
+
 license: CC BY SA
 
 ##Getting started
