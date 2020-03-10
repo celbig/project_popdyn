@@ -700,10 +700,14 @@ class ODE_Model:
             mode = "lines",
             name = "Nx"
         ), row = 1, col = 1)
+        grap.update_xaxes(title_text="t", row=1, col=1)
+        grap.update_yaxes(title_text="Nx", row=1, col=1)
         graph.add_trace(go.Scatter(
             x = t,
             y = process[1,:],
             mode = "lines",
             name = "Ny"
         ), row = 2, col = 1)
+        grap.update_xaxes(title_text="t", row=2, col=1)
+        grap.update_yaxes(title_text="Nx", row=2, col=1)
         return (t, process, graph)
