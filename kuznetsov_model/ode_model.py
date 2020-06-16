@@ -711,5 +711,5 @@ class ODE_Model:
             name = "Ny"
         ), row = 2, col = 1)
         graph.update_xaxes(title_text="t", row=2, col=1)
-        graph.update_yaxes(title_text="Nx", row=2, col=1)
+        graph.update_yaxes(title_text="Ny", row=2, col=1)
         return (t, process, graph)
