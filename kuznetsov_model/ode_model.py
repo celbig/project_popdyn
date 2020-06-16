@@ -1,6 +1,7 @@
 import numpy as np
 import numpy.polynomial.polynomial as poly
 import plotly.graph_objects as go
+import time
 from scipy.integrate import ode
 from plotly.subplots import make_subplots
 from kuznetsov_model.helper_functions import * 
@@ -611,7 +612,8 @@ class ODE_Model:
         V,
         Tmax,
         dtmin = 0.1,
-        generate_graph = False
+        generate_graph = False, 
+        max_compute_time = None
     ):
         """
         Simulate the stochastic version of the model
@@ -623,14 +625,13 @@ class ODE_Model:
             generate_graph -> if True, also return a graph
         """
         # Array declarations
-        n_array = np.round(Tmax)
+        n_array = int(np.ceil(Tmax))
         t = np.empty((n_array,))
         dt_list = np.zeros((n_array,))
         process = np.empty((2,n_array))
 
         # Initialization
         i = 0
-        mean_dt = np.Inf
         process[:,0] = [Nx0, Ny0]
         t[0] = 0
         cases = [
@@ -640,9 +641,13 @@ class ODE_Model:
             np.array([0, -1]),
         ]
         cases_indexes = [0, 0, 1, 1, 2, 3, 3]
+        begin_timer = time.time()
+
+        if not max_compute_time:
+            max_compute_time = np.Inf
 
         # Simulation
-        while t[i] < Tmax and mean_dt > dtmin and process[1, i] > 0 and process[0, i] > 0 :
+        while t[i] < Tmax  and process[1, i] > 0 and process[0, i] > 0  and time.time() - begin_timer < 30 :
             x = process[0, i]
             y = process[1, i]
 
@@ -660,22 +665,19 @@ class ODE_Model:
                 self.mu * x * y / V,
                 self.delta *x,
                 self.alpha * y,
-                self.alpha * y * self.beta * x / V,
+                self.alpha * y * self.beta * y / V,
                 x * y / V
             ])
-            prob = prob / np.sum(prob)
+            #prob = prob / np.sum(prob)
 
             # Process update
-            k = np.random.choice(cases_indexes, p = prob)
+            k = np.random.choice(cases_indexes, p = prob / np.sum(prob) )
             t[i + 1] = t[i] + dt_list[i]
             process[:, i + 1]  = cases[k] + process[:, i]
 
             # Time update
             dt_list[i] = np.random.exponential(1 / np.sum(prob))
             t[i + 1] = t[i] + dt_list[i]
-            # time step size condition
-            if i > 10:
-                mean_dt = np.mean(dt_list[(i - 9) : (i+1)])
 
             i += 1
 
@@ -692,7 +694,7 @@ class ODE_Model:
                                  "Nx process",
                                  "Ny process"
                              ])
-        graph.update_layout(title_text="Stochastic realisation of the model")
+        graph.update_layout(title_text="$\\text{Stochastic process}$")
 
         graph.add_trace(go.Scatter(
             x = t,
@@ -700,14 +702,14 @@ class ODE_Model:
             mode = "lines",
             name = "Nx"
         ), row = 1, col = 1)
-        grap.update_xaxes(title_text="t", row=1, col=1)
-        grap.update_yaxes(title_text="Nx", row=1, col=1)
+        graph.update_xaxes(title_text="t", row=1, col=1)
+        graph.update_yaxes(title_text="Nx", row=1, col=1)
         graph.add_trace(go.Scatter(
             x = t,
             y = process[1,:],
             mode = "lines",
             name = "Ny"
         ), row = 2, col = 1)
-        grap.update_xaxes(title_text="t", row=2, col=1)
-        grap.update_yaxes(title_text="Nx", row=2, col=1)
+        graph.update_xaxes(title_text="t", row=2, col=1)
+        graph.update_yaxes(title_text="Nx", row=2, col=1)
         return (t, process, graph)
