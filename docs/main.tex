@@ -17,6 +17,27 @@
 \newcommand{\deriv}{\mathrm{d}}
 \newcommand{\dt}[1]{\frac{\deriv #1}{\deriv t}}
 \newcommand{\dtau}[1]{\frac{\deriv #1}{\deriv \tau}}
+\newcommand{\figstochasticsimulation}[2]{%
+\begin{figure}[h!p]
+\centering
+    \begin{subfigure}[b]{\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{../figures/simulations_stochastiques/process_#1.png}
+         \caption{Processus stochastiques $N_x$ et $N_y$}
+         \label{autofig::process#1}
+     \end{subfigure}
+     \hfill
+    \begin{subfigure}[b]{0.8\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{../figures/simulations_stochastiques/phase_#1.png}
+         \caption{Trajectoire  des processus dans l'espace de phase}
+         \label{autofig::phase#1}
+     \end{subfigure}
+    \caption{Simulation du modèle stochastique.\\ #2}
+    \label{autofig::simulstoch#1}
+\end{figure}
+}%
+
 
 
 \title{Projet dynamique des populations cellulaires :\\
@@ -458,22 +479,32 @@ Les \'ev\'enements de naissances-morts possibles sont :
         \item par arriv\'ee de cellules effectrices li\'ee \`a la pr\'esence de cellules tumorales avec un taux $\frac{\rho N_y}{\frac{\eta}{\Omega} + N_y }$
     \end{itemize}
 \item mort d'une cellule effectrice :
-\begin{itemize}
-    \item avec le taux basal de $\delta$
-    \item par interaction avec les cellules tumorales au taux $\frac{\mu N_y}{\Omega}$
-\end{itemize}
+    \begin{itemize}
+        \item avec le taux basal de $\delta$
+        \item par interaction avec les cellules tumorales au taux $\frac{\mu N_y}{\Omega}$
+    \end{itemize}
 \item naissance d'une cellule tumorale :
-\begin{itemize}
-    \item au taux constant $\alpha$
-\end{itemize}
+    \begin{itemize}
+        \item au taux constant $\alpha$
+    \end{itemize}
 \item mort d'une cellule tumorale :
-\begin{itemize}
-    \item li\'e \`a la compétition pour les ressources du milieu au taux $\frac{\alpha \beta}{\omega}N_y$
-    \item li\'e \`a l'interaction avec le syst\`eme immunitaire au taux $\frac{N_x}{\Omega}$
+    \begin{itemize}
+        \item li\'e \`a la compétition pour les ressources du milieu au taux $\frac{\alpha \beta}{\omega}N_y$
+        \item li\'e \`a l'interaction avec le syst\`eme immunitaire au taux $\frac{N_x}{\Omega}$
+    \end{itemize}
 \end{itemize}
 
 \subsection{Simulations du mod\`ele stochastique}
-\end{itemize}
+Les figures \ref{autofig::simulstoch1},\ref{autofig::simulstoch2}, \ref{autofig::simulstoch3}, \ref{autofig::simulstoch4}, \ref{autofig::simulstoch5}, \ref{autofig::simulstoch6} et  \ref{autofig::simulstoch7} présentent des simulations du mod\`ele stochastique pour les valeurs de param\`etres biologiques estim\'es (cf Table \ref{table::param_bio}) en partant de diff\'erentes conditions initiales.
+
+\figstochasticsimulation{1}{$V = 66.7$, $N_x = 100$, $N_y = 667$, $x = 1.5$, $y = 10$}
+\figstochasticsimulation{2}{$V = 166.7$, $N_x = 50$, $N_y = 3333$, $x = 0.3$, $y = 20$}
+\figstochasticsimulation{3}{$V = 131.6$, $N_x = 100$, $N_y = 35132$, $x = 0.76$, $y = 267$}
+\figstochasticsimulation{4}{$V = 500$, $N_x = 50$, $N_y = 10000$, $x = 0.1$, $y = 20$}
+\figstochasticsimulation{5}{$V = 65.8$, $N_x = 50$, $N_y = 20526$, $x = 0.76$, $y = 312$}
+\figstochasticsimulation{6}{$V = 100$, $N_x = 100$, $N_y = 1$, $x = 1$, $y = 0.01$}
+\figstochasticsimulation{7}{$V = 100$, $N_x = 100$, $N_y = 1$, $x = 1$, $y = 0.01$}
+
 \section*{Sources}
 Les figures présentées ont été produite  à l'aide de la librairie python \texttt{plotly}.\footnote{\url{https://plot.ly/python/}} Le code est disponible en supplément ou à l'adresse \url{https://github.com/celbig/project_popdyn}. Le modèle est implémenté dans le package \texttt{kutznetsov\_model}, le code générant les figures est contenu dans le notebook jupyter \texttt{projet\_pop\_dyn.ipynb}.
 
