@@ -20,3 +20,9 @@ pip install --user numpy scipy plotly==4.5.2
 ```
 
 2. run `projet_pop_dyn.ipynb`
+
+## Documentation
+
+The latex source code of the report is available in the docs folder. 
+
+All the figures used in the report are available as png images in the figure folder.
