@@ -505,6 +505,22 @@ Les figures \ref{autofig::simulstoch1},\ref{autofig::simulstoch2}, \ref{autofig:
 \figstochasticsimulation{6}{$V = 100$, $N_x = 100$, $N_y = 1$, $x = 1$, $y = 0.01$}
 \figstochasticsimulation{7}{$V = 100$, $N_x = 100$, $N_y = 1$, $x = 1$, $y = 0.01$}
 
+\section{Commentaire des simulations stochastiques}
+On peut noter en premier lieu que lorsque le nombre de cellule par unit\'e de volume est \'elev\'e comme sur les figures \ref{autofig::simulstoch1} et \ref{autofig::simulstoch2}, le mod\`ele stochastique est tr\`es proche du mod\`ele deterministe. D'autant plus que les conditions initiales sont \'eloign\'ees des fronti\`eres des bassins d'attraction, materialis\'ees par les variétés stables des points selles.
+
+\paragraph*{}
+ Lorsqu'au contraire, les conditions initiales sont proches de la vari\'et\'e stable de l'\'equilibre C, comme sur les figures \ref{autofig::simulstoch3} et \ref{autofig::simulstoch5}, la trajectoire peut couper, et m\^eme plusieurs fois, la fronti\`ere des bassins d'attraction avant de finir par sembler \^etre attir\'ee par un des \'equilibres stables. Ceci se produit y compris lorsque les conditions initiales sont un des \'equilibres du syst\`eme dynamique d\'eterministe sous jacent. 
+
+ En effet, c'est une diff\'erence majeure du syst\`eme stochastique vis-\`a-vis du syst\`eme d\'eterministe, les \'equilibres du syst\`eme d\'eterministe ne sont pas en g\'en\'eral des \'etats stationnaires pour le syst\`eme stochastique. Dans le cas pr\'esent, seul le point $(0,0)$ est un point stationnaire pour le syst\`eme stochastique. De plus, les trajectoires peuvent \`a cause des fluctuations statistiques passer d'un bassin d'attraction \`a l'autre, ce qui est impossible pour les trajectoires du syst\`eme d\'eterministe.
+
+\paragraph{}
+Sur les figures \ref{autofig::simulstoch6} et \ref{autofig::simulstoch7} on peut voir deux simulations \`a partir des m\^eme conditions initiales avec des trajectoires diff\'rentes. Ces deux simulation partent d'une tumeur de taille initiale \'egale \`a $1$ cellule. La trajectoire de la figure montre une tumeur, qui ne parvient pas \`a s'implenter et qui s'\'eteind rapidement. Alors que la figure pr\'esente une tumeur qui parvient \`a atteindre une taille suffisante pour ne plus risquer trop facilement l'extinction par fluctuation statistique et qui par la suite suit de mani\`ere assez proche la trajectoire pr\'edite par le mod\`ele d\'eterministe. 
+
+Si l'on avait lanc\'e la simulation un nombre important de fois, on aurait pu observer des trajectoires o\`u la tumeur r\'eussit \`a \'echapper au syst\`eme immunitaire, c'est-\`a-dire que le processus $N_y$ quitte le bassin d'attrction de l'\'equilibre B pour rejoindre celui de D. 
+
+
+\section*{Conclusion}
+Les auteurs ont proposé un mod\`ele 
 \section*{Sources}
 Les figures présentées ont été produite  à l'aide de la librairie python \texttt{plotly}.\footnote{\url{https://plot.ly/python/}} Le code est disponible en supplément ou à l'adresse \url{https://github.com/celbig/project_popdyn}. Le modèle est implémenté dans le package \texttt{kutznetsov\_model}, le code générant les figures est contenu dans le notebook jupyter \texttt{projet\_pop\_dyn.ipynb}.
 
