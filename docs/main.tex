@@ -49,7 +49,7 @@
 
 \maketitle
 \section*{Introduction}
-Ce projet étudie le modèle proposé par Kuznetsov dans son article ``\emph{Nonlinear  Dynamics of Immunogenic Tumors: Estimation and global Bifurcation Analysis}'' de 1994. Ce modèle décrit les intéraction entre une tumeur cancéreuse et le système immunitaire et cherche à décrire les dynamiques de la maladie ainsi que les effets du système immunitaire sur la régulation de la population cancéreuse. 
+Ce projet étudie le modèle proposé par Kuznetsov dans son article ``\emph{Nonlinear  Dynamics of Immunogenic Tumors: Estimation and global Bifurcation Analysis}'' de 1994. Ce modèle décrit les interactions entre une tumeur cancéreuse et le système immunitaire et cherche à décrire les dynamiques de la maladie ainsi que les effets du système immunitaire sur la régulation de la population cancéreuse. 
 
 \paragraph{} En particulier, les auteurs cherchent à reproduire les effets de ``dormance tumorale'' qui correspond au fait pour une tumeur de petite taille de rester dans un état quiescient avec un très faible taux de croissance mais une résistance accrue aux traitement et à la réponse immunitaire (amenant à la rechute de maladie apparement guérie jusqu'à plusieurs dizains d'années après la fin du traitement).
 
@@ -520,7 +520,15 @@ Si l'on avait lanc\'e la simulation un nombre important de fois, on aurait pu ob
 
 
 \section*{Conclusion}
-Les auteurs ont proposé un mod\`ele 
+Les auteurs ont proposé un mod\`ele de syst\`eme dynamique pour d\'ecrire les interactions entre le syst\`eme immunitaire et une tumeur liquide (comme une leuc\'emie par exemple). L'objectif \'etait de reproduire les effets de dormance tumorale et de ``sneaking through'' en regardant si ce mod\`ele bas\'e sur des m\'ecanismes d'immumostimulation et de r\'epression du syst\`eme immunitaire par la tumeur \'etait capable de produire qualitativement ces ph\'enom\`enes.
+
+\paragraph{} L'analyse des bifurcations propos\'ee par les auteurs montre qu'il est possibles, en se plaçant dans des valeurs de param\`etres biologiquement plausibles, d'observer dans l'espace des phases, une zone de ``sneaking through'' (le bassin d'attraction de l'\'equilibre D) dans laquelle de petites tumeurs parviennent \`a \'echapper \`a la r\'egulation par le syst\`eme immunitaire. 
+
+La probl\`ematique de la dormance est plus difficile \`a \'evaluer avec une analyse uniquement qualitative mais peut correspondre \`a un point d'equilibre C pour lequel la tumeur est de taille assez faible. Dans ce cas, les tumeurs qui passent dans le voisinage de sa vari\'et\'e stable, vont se rapprocher de cet \'equilibre, en rester proche pendant un certain temps, puis finir par \'echapper au syst\`eme immunitaire, ou alors par être completement r\'egul\'e par celui-ci.
+
+\paragraph{}
+Le processus stochastique associ\'e \`a ce mod\`ele, montre le m\^eme type de comportements mais peut, par l'effet de fluctuations al\'eatoires changer de bassin d'attraction et illustre ainsi d'une mani\`ere encore plus marqu\'ee l'effet de ``sneaking through''
+
 \section*{Sources}
 Les figures présentées ont été produite  à l'aide de la librairie python \texttt{plotly}.\footnote{\url{https://plot.ly/python/}} Le code est disponible en supplément ou à l'adresse \url{https://github.com/celbig/project_popdyn}. Le modèle est implémenté dans le package \texttt{kutznetsov\_model}, le code générant les figures est contenu dans le notebook jupyter \texttt{projet\_pop\_dyn.ipynb}.
 
